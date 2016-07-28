@@ -1,0 +1,120 @@
+<% if @artist != nil %>
+  <div class ="backArrow__layout">
+    <a href="/artists"><img class="backArrow" src="images/back_arrow.png"></a>
+  </div>
+<% end %>  
+
+<% if @artist == nil %>
+  <table class="artistTable">
+    <tr class="artistTable__row">
+      <th class="artistTable__header">Artist</th> 
+    </tr>
+    <% @artistarray.each do |artist| %>
+    <tr class="artistTable__row">
+    	<td id="artistButton" class="artistTable__data"><a class="artistTable__link" href= "?artist=<%= artist %>"><%= artist %></a></td>
+    </tr>
+     <% end %>
+  </table>
+
+  
+
+<% else %>
+
+
+  <h1><a class="artistTitle" href= "<%= @artist.getArtistInfo()["url"] %>"><%= @artist %></a></h1>
+
+  <a class="artistSongButton" href= "/songsbyartist?artist=<%= @artist %>">Songs by <%= @artist %></a>
+  
+  <div class= "artistBio" id="artistBio__full"><%= @artist.getArtistInfo()["bio"] %></div>
+
+  <div class="artistTab">
+    <a href= "#"><div class= "tab" id="artistTab__albums">Top Albums</div></a>
+    <a href= "#"><div class= "tab" id="artistTab__tracks">Top Tracks</div></a>
+    <a href= "#"><div class= "tab" id="artistTab__artists">Similar Artists</div></a>
+  </div>
+
+<!-- Begin hidden page content -->
+
+<!------------------- Top Albums Tab ------------------>
+  
+  <% if @topalbumsarray["error"] == 6 %>
+    <div id = "errorMessage">
+    <div class="errorMessage">We're sorry, there were no similar artist found.</div>
+  </div>
+
+  <% else %>
+
+      <div id= "topAlbums" class= "tabContent">
+  
+      <% @topalbums.getTopAlbumInfo().each do |album| %>
+  
+        <div class= "tabContent__view">
+          <img class="tabContent__image" src= "<%= album["image"] %>">
+          <br>
+          <a class ="tabContent__link" href= "<%= album["url"] %>"><%= album["name"] %></a>
+        </div>
+  
+      <% end %>
+  
+    </div>
+  
+  <% end %>
+
+<!------------------- Similar Artists Tab ------------------>
+
+
+  <% if @artistinfo["error"] == 6 %>
+  
+    <div id = "errorMessage">
+      <div class="errorMessage">We're sorry, there were no similar artist found.</div>
+      <div class= "backbutton"><a href= "/artists">Back to Artist List Page</a></div>
+    </div>
+  
+  <% else %>
+  
+  <div id= "similarArtists" class= "tabContent">
+    
+      <% @similarartists.getSimilarArtistInfo().each do |artist| %>
+  
+        <div class= "tabContent__view">
+          <img class="tabContent__image" src= "<%= artist["image"] %>">
+          <br>
+          <a class ="tabContent__link" href= "<%= artist["url"] %>"><%= artist["name"] %></a>
+        </div>
+  
+      <% end %>
+  
+    </div>
+  
+  <% end %>
+
+<!------------------- Top Tracks Tab ------------------>
+
+  <% if @toptracksarray["error"] == 6 %>
+  
+    <div id = "errorMessage">
+      <div class="errorMessage">We're sorry, there were no similar artist found.</div>
+      <div class= "backbutton"><a href= "/artists">Back to Artist List Page</a></div>
+    </div>
+  
+  <% else %>
+  
+    <div id= "topTracks" class= "tabContent">
+  
+      <% @toptracks.getTopTrackInfo().each do |track| %>
+  
+        <div class= "tabContent__view">
+          <img class="tabContent__image" src= "<%= track["image"] %>">
+          <br>
+          <a class ="tabContent__link" href= "<%= track["url"] %>"><%= track["name"] %></a>
+        </div>
+  
+      <% end %>
+  
+    </div>
+  
+  <% end %>
+
+<% end %>
+
+ 

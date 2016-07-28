@@ -1,0 +1,19 @@
+<table class="table">
+  <tr class="table__row">
+    <th class="table__header">Album</th> 
+    <th class="table__header">Artist</th>
+    <th class="table__header">Genre</th>
+    <th class="table__header">Album Rating</th> 
+  </tr>
+  <% @albumarray.each do |album,artist,genre,albumrating| %>
+  <tr class="table__row">
+  	<td class=" table__data"><a class="albumTable__link" href="/albumdetail?album=<%= album %>&artist=<%= artist %>"><%= album %></a></td>
+  	<td class="table__data"><%= artist %></td>
+  	<td class="table__data"><%= genre %></td>
+  	<td class="table__data rating"><%= albumrating %></td>
+  </tr>
+   <% end %>
+</table>
+
+
+

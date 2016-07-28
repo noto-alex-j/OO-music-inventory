@@ -1,0 +1,86 @@
+<form class="form" action="/add_song" method="post">
+	Song:
+	<input class="form__item" type="text" name="titleParam" required><br>
+
+	Artist:
+	<input class="form__item" type="text" name="artistParam" required><br>
+
+	Album:
+	<input class="form__item" type="text" name="albumParam" required=""><br>
+
+	Genre:
+
+	<select class="form__item genre" name="genreParam">
+		<option value="Blues">Blues</option>
+		<option value="Classical">Classical</option>
+		<option value="Country">Country</option>
+		<option value="Electronic">Electronic</option>
+		<option value="Folk">Folk</option>
+		<option value="Hip-hop/Rap">Hip-hop/Rap</option>
+		<option value="Jazz">Jazz</option>
+		<option value="Pop">Pop</option>
+		<option value="Rock">Rock</option>
+	</select><br>
+
+	Track Length
+    <div class="form__item minute">Minutes:
+	   <input class="form__item" type="number" min="0" max="99" name="minuteParam" required>
+	</div>
+    
+    <div class="form__item second">Seconds:
+	   <input class="form__item" type="number" min="0" max="59" name="secondParam" required>
+    </div>
+
+	Song Rating:
+	<span class="songrating" name="rateSongParam">
+        <input type="radio" class="songrating-input" value="5"
+        		id="songrating-input-1-5" name="rateSongParam"/>
+        <label for="songrating-input-1-5" class="songrating-star"></label>
+       
+        <input type="radio" class="songrating-input" value="4"
+                id="songrating-input-1-4" name="rateSongParam"/>
+        <label for="songrating-input-1-4" class="songrating-star"></label>
+        
+        <input type="radio" class="songrating-input" value="3"
+                id="songrating-input-1-3" name="rateSongParam"/>
+        <label for="songrating-input-1-3" class="songrating-star"></label>
+        
+        <input type="radio" class="songrating-input" value="2"
+                id="songrating-input-1-2" name="rateSongParam"/>
+        <label for="songrating-input-1-2" class="songrating-star"></label>
+        
+        <input type="radio" class="songrating-input" value="1"
+                id="songrating-input-1-1" name="rateSongParam"/>
+        <label for="songrating-input-1-1" class="songrating-star"></label>
+	</span><br>
+
+  <!-- TODO - BEMify. I attempted to BEMify and it broke the ratings-->
+
+	Album Rating:
+	<span class="albumrating" name="rateAlbumParam">
+        <input type="radio" class="albumrating-input" value="5"
+        		id="albumrating-input-1-5" name="rateAlbumParam"/>
+        <label for="albumrating-input-1-5" class="albumrating-star"></label>
+        
+        <input type="radio" class="albumrating-input" value="4"
+                id="albumrating-input-1-4" name="rateAlbumParam"/>
+        <label for="albumrating-input-1-4" class="albumrating-star"></label>
+        
+        <input type="radio" class="albumrating-input" value="3"
+                id="albumrating-input-1-3" name="rateAlbumParam"/>
+        <label for="albumrating-input-1-3" class="albumrating-star"></label>
+        
+        <input type="radio" class="albumrating-input" value="2"
+                id="albumrating-input-1-2" name="rateAlbumParam"/>
+        <label for="albumrating-input-1-2" class="albumrating-star"></label>
+        
+        <input type="radio" class="albumrating-input" value="1"
+                id="albumrating-input-1-1" name="rateAlbumParam"/>
+        <label for="albumrating-input-1-1" class="albumrating-star"></label>
+	</span><br>
+	
+    <input class="form__item submit" type="submit" name="submit">
+</form>
+
+
+

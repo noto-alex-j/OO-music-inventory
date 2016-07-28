@@ -7,85 +7,151 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="images/vinyl.png">
+    <script type="text/javascript" src="global.js"></script>
 
-    <title>Bollywood Bechdel</title>
+    <title>Music Database</title>
   </head>
 
-<body>
+<body class="mainContainer">
 
-<nav>
-  <div class="container">
-    <ul>
-      <li>
-        <a href="/results/list">Bechdel Gallery</a>
-      </li>
+  <nav class="topContainer">
 
-      <% if @current_user == nil %>
-      	<li class="active">
-          <a href="/users/new">Create account</a>
-        </li>
+      <div class="editItems">
+        <div id="addSongButton" class="addItem__button">
+            <img class="addItem__icon" src="images/add.png">
+        </div>
 
-        <li class="active">
-          <a href="/login`">Log in</a>
-        </li>
-      <% else %>
-       	<li class="active">
-       		<a href="/users/<%= @current_user.id %>/view">Profile</a>
-       	</li>
-
-       	<li>
-       		<a href="/logout">Logout</a>
-       	</li>
-      <% end %>
-    </ul>
-  </div>
-</nav>
-
-<% if @error != nil %>
-  <div class="container">
-    <% @error.each do |error_message| %>
-      <div role="alert">
-        <button type="button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Error!</strong> <%= error_message %>
+        <div id="deleteSongButton" class="deleteItem__button">
+            <img class="deleteItem__icon" src="images/trash.png">
+        </div>
       </div>
-    <% end %>
-  </div>
-<% end %>
+      
+      <div class="nav">    
+          <a class="nav__item" href= "/songs">Songs</a>
+          <a class="nav__item" href= "/albums">Albums</a>
+          <a class="nav__item" href= "/artists">Artists</a>
+      </div>
+
+      <div class="searchItem">
+        <form class="searchForm" action="/songs" method="post">
+          <input class="searchItem__box" type="text" name="searchParam" placeholder="Search Music">
+          <input class="searchItem_button" type="image" src="images/search_white.png" border="0" alt="search">
+        </form>
+      </div>
+
+  </nav>
 
 <!-- The `yield` below is where the contents of a view file are put. -->
 <!-- Then the combined layout + view is sent back to the client. -->
-<%= yield %>
-
-<div>
-  <div class="container">
-    <p>
-      Find a Bollywood movie with <strong>strong</strong> female characters.
-    </p>
-
-    <form action="/movies/search" method="post">
-      <select name="search_category">
-        <option selected disabled>Choose category</option>
-        <option value= "title">Title</option>
-        <option value= "director">Director</option>
-      </select>
-
-      <input type="text" name="search" placeholder="search for a movie">
-
-      <div>
-        <label>
-          <input type="checkbox" name="passes_bechdel" value="1">
-          Passes Bechdel Test
-        </label>
-      </div>
-
-      <div>
-        <button>
-          Search
-        </button>
-      </div>
-    </form>
-  </div>
+<div class="contentContainer">
+  <%= yield %>
 </div>
+
+<form id="addSongForm" class="form" action="/add_song" method="post">
+<div id="addClose">X</div>
+  Song:
+  <input class="form__item" type="text" name="titleParam" required><br>
+
+  Artist:
+  <input class="form__item" type="text" name="artistParam" required><br>
+
+  Album:
+  <input class="form__item" type="text" name="albumParam" required=""><br>
+
+  Genre:
+
+  <select class="form__item genre" name="genreParam">
+    <option value="Blues">Blues</option>
+    <option value="Classical">Classical</option>
+    <option value="Country">Country</option>
+    <option value="Electronic">Electronic</option>
+    <option value="Folk">Folk</option>
+    <option value="Hip-hop/Rap">Hip-hop/Rap</option>
+    <option value="Jazz">Jazz</option>
+    <option value="Pop">Pop</option>
+    <option value="Rock">Rock</option>
+  </select><br>
+
+  Track Length
+    <div class="form__item minute">Minutes:
+     <input class="form__item" type="number" min="0" max="99" name="minuteParam" required>
+  </div>
+    
+    <div class="form__item second">Seconds:
+     <input class="form__item" type="number" min="0" max="59" name="secondParam" required>
+    </div>
+
+  Song Rating:
+  <span class="songrating" name="rateSongParam">
+        <input type="radio" class="songrating-input" value="5"
+            id="songrating-input-1-5" name="rateSongParam"/>
+        <label for="songrating-input-1-5" class="songrating-star"></label>
+       
+        <input type="radio" class="songrating-input" value="4"
+                id="songrating-input-1-4" name="rateSongParam"/>
+        <label for="songrating-input-1-4" class="songrating-star"></label>
+        
+        <input type="radio" class="songrating-input" value="3"
+                id="songrating-input-1-3" name="rateSongParam"/>
+        <label for="songrating-input-1-3" class="songrating-star"></label>
+        
+        <input type="radio" class="songrating-input" value="2"
+                id="songrating-input-1-2" name="rateSongParam"/>
+        <label for="songrating-input-1-2" class="songrating-star"></label>
+        
+        <input type="radio" class="songrating-input" value="1"
+                id="songrating-input-1-1" name="rateSongParam"/>
+        <label for="songrating-input-1-1" class="songrating-star"></label>
+  </span><br>
+
+  <!-- TODO - BEMify. I attempted to BEMify and it broke the ratings-->
+
+  Album Rating:
+  <span class="albumrating" name="rateAlbumParam">
+        <input type="radio" class="albumrating-input" value="5"
+            id="albumrating-input-1-5" name="rateAlbumParam"/>
+        <label for="albumrating-input-1-5" class="albumrating-star"></label>
+        
+        <input type="radio" class="albumrating-input" value="4"
+                id="albumrating-input-1-4" name="rateAlbumParam"/>
+        <label for="albumrating-input-1-4" class="albumrating-star"></label>
+        
+        <input type="radio" class="albumrating-input" value="3"
+                id="albumrating-input-1-3" name="rateAlbumParam"/>
+        <label for="albumrating-input-1-3" class="albumrating-star"></label>
+        
+        <input type="radio" class="albumrating-input" value="2"
+                id="albumrating-input-1-2" name="rateAlbumParam"/>
+        <label for="albumrating-input-1-2" class="albumrating-star"></label>
+        
+        <input type="radio" class="albumrating-input" value="1"
+                id="albumrating-input-1-1" name="rateAlbumParam"/>
+        <label for="albumrating-input-1-1" class="albumrating-star"></label>
+  </span><br>
+  
+    <input class="form__item submit" type="submit" name="submit">
+</form>
+
+
+<form id="deleteSongForm" class="form" action="/delete" method="post">
+    <div id="deleteClose">X</div>
+    <p>To delete specific song only complete the "Song" field.<p>
+
+    <p>To delete an entire Album or Artist complete their respective field</p><br>
+
+    Song:
+  <input class="form__item" type="text" name="songdeleteParam"><br>
+
+  Artist:
+  <input class="form__item" type="text" name="artistdeleteParam"><br>
+
+  Album:
+  <input class="form__item" type="text" name="albumdeleteParam"><br>
+  
+    <input class="form__item submit" type="submit" name="submit">
+</form>
 
 </body>
 
