@@ -12,7 +12,7 @@ class TopAlbum
 		@albumnames = Array.new
 		@albumimages = Array.new
 		self.topAlbumUrls()
-		self.topAlbumnames()
+		self.topAlbumNames()
 		self.topAlbumImages()
 	end
 	
@@ -125,6 +125,7 @@ class Artist
 		@artistnames = Array.new
 		@artisturls = Array.new
 		@artistimages = Array.new
+		@artistname = artist
 		self.similarArtistUrls()
 		self.similarArtistNames()
 		self.similarArtistImages()
@@ -169,6 +170,7 @@ class Artist
 	def getArtistInfo
 		if @artistinfo["error"] != 6
 			artist = {
+				"name" => @artistname,
 				"url" => @artistinfo["artist"]["url"],
 				"bio" => @artistinfo["artist"]["bio"]["summary"],
 				"image" => @artistinfo["artist"]["image"][2]["#text"]

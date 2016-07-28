@@ -21,11 +21,7 @@
 <% else %>
 
 
-  <h1><a class="artistTitle" href= "<%= @artist.getArtistInfo()["url"] %>"><%= @artist %></a></h1>
-
-  <a class="artistSongButton" href= "/songsbyartist?artist=<%= @artist %>">Songs by <%= @artist %></a>
   
-  <div class= "artistBio" id="artistBio__full"><%= @artist.getArtistInfo()["bio"] %></div>
 
   <div class="artistTab">
     <a href= "#"><div class= "tab" id="artistTab__albums">Top Albums</div></a>

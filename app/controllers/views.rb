@@ -50,7 +50,6 @@ MyApp.get "/artists" do
 
 	@topalbums = TopAlbum.new(params[:artist])
 	@similarartists = Artist.new(params[:artist])
-	@artist = @art.getArtistInfo()
 	@toptracks = TopTrack.new(params[:artist])
 
 	
