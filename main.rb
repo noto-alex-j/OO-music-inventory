@@ -30,7 +30,12 @@ end
 
 require 'tilt/erb'
 
-DB = SQLite3::Database.new "music.db"
+if MyApp.settings.environment == :development
+	DB = SQLite3::Database.new "music.db"
+elsif MyApp.settings.environment == :test
+	DB = SQLite3::Database.new "test.db"
+end
+
 DB.results_as_hash = true
 
 Dir[File.dirname(__FILE__) + '/app/models/*.rb'].each {|file| require file }

@@ -10,6 +10,8 @@ class Song
   end
 
   def save
+    # artist = Artist.find_or_create_by_name(@artist)
+
     if Artist.find(@artist) == nil
       newartist = Artist.new(@artist)
       newartist.save
