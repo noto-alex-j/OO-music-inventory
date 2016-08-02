@@ -1,24 +1,50 @@
 class Song
-  def initialize(title,albumid,rating,length)
-    @title = title
-    @album = albumid
+  def initialize(title,artist,album,genre,rating,length,id = nil)
+    @title = title.downcase
+    @artist = artist
+    @album = album
+    @genre = genre
     @rating = rating
     @length = length
+    @id = id
   end
 
   def save
-    DB.execute("INSERT INTO songs (title,album_id,rating,length) VALUES ('#{@title}',#{@album},#{@rating},#{@length});")
+    if Artist.find(@artist) == nil
+      newartist = Artist.new(@artist)
+      newartist.save
+    end
+
+    artistinfo = Artist.find(@artist)
+    artistid = artistinfo.id
+
+    if Album.find(@album) == nil
+      newalbum = Album.new(@album,artistid)
+      newalbum.save
+    end
+
+    albuminfo = Album.find(@album)
+    albumid = albuminfo.id
+    
+    DB.execute("INSERT INTO songs (title,album_id,rating,length) VALUES ('#{@title}',#{albumid},#{@rating},#{@length});")
   end
 
-  def self.find()
+  def self.find(title)
+    title = title.downcase
+    record = DB.execute("SELECT * FROM songs WHERE title = '#{title}';")
+    record = record[0]
+    Album.new(record["title"],record["album_id"],record["rating"],record["length"],record["id"])
+  end
 
 end
 
-
 class Artist
+  attr_reader :id
+  attr_reader :name
+
   def initialize(name, id = nil)
-    @id = id
     @name = name.downcase
+    @id = id
   end
 
   def save
@@ -29,22 +55,39 @@ class Artist
     name = name.downcase
     record = DB.execute("SELECT * FROM artists WHERE name = '#{name}';")
     record = record[0]
-    Artist.new(record["name"],record["id"])
+    if record != nil
+      Artist.new(record["name"],record["id"])
+    else
+      return nil
+    end
   end
 
 end
 
 
 class Album
-  def initialize(title,artistid,genre,rating)
-    @title = title
+attr_reader :title
+attr_reader :id
+
+  def initialize(title,artistid,id = nil)
+    @title = title.downcase
     @artist = artistid
-    @genre = genre
-    @rating = rating
+    @id = id
   end
 
   def save
-    DB.execute("INSERT INTO albums (title,artist_id,genre,rating) VALUES ('#{@title}',#{@artist},#{@genre},#{@rating});")
+    DB.execute("INSERT INTO albums (title,artist_id) VALUES ('#{@title}',#{@artist});")
+  end
+
+  def self.find(title)
+    title = title.downcase
+    record = DB.execute("SELECT * FROM albums WHERE title = '#{title}';")
+    record = record[0]
+    if record != nil
+      Album.new(record["title"],record["artist_id"],record["id"])
+    else
+      return nil
+    end
   end
 
 end
