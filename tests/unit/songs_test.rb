@@ -51,5 +51,13 @@ class Songstest < Minitest::Test
     assert_equal("overgrown", foundalbum.albumtitle)
   end
 
+  def test_song_delete
+    foundsong = Song.find("White Owl")
+    foundsong.delete
+
+    deletedsong = Song.find("White Owl")
+    assert_equal("Not found",deletedsong)
+  end
+
 end
 
