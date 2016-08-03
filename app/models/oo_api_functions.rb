@@ -118,7 +118,7 @@ end
 #
 # Functions obtain URLs, titles, and images from 'similar artists' array and return them in separate arrays. 
 
-class Artist
+class ArtistInfo
 
 	def initialize(artist)
 		@artistinfo = HTTParty.get("http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=#{artist}&api_key=#{API_KEY}&format=json")

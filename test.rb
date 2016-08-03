@@ -9,9 +9,9 @@ class Song
 
   def initialize(songtitle,artist,album,genre,rating,length,id = nil)
     @songtitle = songtitle.downcase
-    @artist = artist
-    @album = album
-    @genre = genre
+    @artist = artist.downcase
+    @album = album.downcase
+    @genre = genre.downcase
     @rating = rating
     @length = length
     @id = id
@@ -35,8 +35,8 @@ class Song
 
     albuminfo = Album.find(@album)
     albumid = albuminfo.id
-    
-    DB.execute("INSERT INTO songs (songtitle,album_id,genre,rating,length) VALUES ('#{@songtitle}',#{albumid},#{@genre},#{@rating},#{@length});")
+
+    DB.execute("INSERT INTO songs (songtitle,album_id,genre,rating,length) VALUES ('#{@songtitle}',#{albumid},'#{@genre}',#{@rating},#{@length});")
   end
 
   def self.find(title)
