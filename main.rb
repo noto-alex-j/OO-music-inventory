@@ -31,7 +31,7 @@ end
 require 'tilt/erb'
 
 if MyApp.settings.environment == :development
-	DB = SQLite3::Database.new "music.db"
+	DB = SQLite3::Database.new "test.db"
 elsif MyApp.settings.environment == :test
 	DB = SQLite3::Database.new "test.db"
 end

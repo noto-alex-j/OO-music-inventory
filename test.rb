@@ -49,7 +49,25 @@ class Song
       WHERE songs.songtitle = '#{title}';"
       )
     record = record[0]
-    Song.new(record["songtitle"],record["name"],record["albumtitle"],record["genre"],record["rating"],record["length"],record["id"])
+
+    if record != nil
+      Song.new(record["songtitle"],record["name"],record["albumtitle"],record["genre"],record["rating"],record["length"],record["id"])
+    else
+      return "Not found"
+    end
+  end
+
+  def self.all
+    DB.execute(
+      "SELECT * 
+      FROM songs 
+      JOIN albums ON songs.album_id = albums.id
+      JOIN artists ON albums.artist_id = artists.id
+      ;")
+  end
+
+  def self.delete(id)
+    DB.execute("DELETE FROM songs WHERE id = #{id};")
   end
 
 end
@@ -72,9 +90,9 @@ class Artist
     record = DB.execute("SELECT * FROM artists WHERE name = '#{name}';")
     record = record[0]
     if record != nil
-    	Artist.new(record["name"],record["id"])
+      Artist.new(record["name"],record["id"])
     else
-    	return nil
+      return nil
     end
   end
 
@@ -82,7 +100,7 @@ end
 
 
 class Album
-attr_reader :title
+attr_reader :albumtitle
 attr_reader :id
 
   def initialize(albumtitle,artistid,id = nil)
@@ -100,19 +118,24 @@ attr_reader :id
     record = DB.execute("SELECT * FROM albums WHERE albumtitle = '#{title}';")
     record = record[0]
     if record != nil
-    	Album.new(record["albumtitle"],record["artist_id"],record["id"])
+      Album.new(record["albumtitle"],record["artist_id"],record["id"])
     else
-    	return nil
+      return nil
     end
   end
 
 end
 
-# x = Song.find("Gold")
+
+
+x = Song.all
+p x
+
+# x = Song.find("Goldsfdsd")
 # p x
 
-x = Song.new("Gold","Chet Faker","Textures","Pop",5,6)
-x.save
+# x = Song.new("saeer","Chet fxggjdgf","esrffgdfh","sesagsh",5,6)
+# x.save
 
 # x = Album.find("Textures")
 # p x

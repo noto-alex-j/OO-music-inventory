@@ -53,7 +53,10 @@ class Songstest < Minitest::Test
 
   def test_song_delete
     foundsong = Song.find("White Owl")
-    foundsong.delete
+    
+    if foundsong != "Not found"
+      Song.delete(foundsong.id)
+    end
 
     deletedsong = Song.find("White Owl")
     assert_equal("Not found",deletedsong)

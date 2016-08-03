@@ -43,7 +43,25 @@ class Song
       WHERE songs.songtitle = '#{title}';"
       )
     record = record[0]
-    Song.new(record["songtitle"],record["name"],record["albumtitle"],record["genre"],record["rating"],record["length"],record["id"])
+
+    if record != nil
+      Song.new(record["songtitle"],record["name"],record["albumtitle"],record["genre"],record["rating"],record["length"],record["id"])
+    else
+      return "Not found"
+    end
+  end
+
+  def self.all
+    DB.execute(
+      "SELECT * 
+      FROM songs 
+      JOIN albums ON songs.album_id = albums.id
+      JOIN artists ON albums.artist_id = artists.id
+      ;")
+  end
+
+  def self.delete(id)
+    DB.execute("DELETE FROM songs WHERE id = #{id};")
   end
 
 end
