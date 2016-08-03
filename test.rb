@@ -5,6 +5,8 @@ DB = SQLite3::Database.new("test.db")
 DB.results_as_hash = true
 
 class Song
+  attr_reader :songtitle, :artist, :album, :genre, :rating, :length, :id
+
   def initialize(songtitle,artist,album,genre,rating,length,id = nil)
     @songtitle = songtitle.downcase
     @artist = artist
@@ -84,7 +86,7 @@ attr_reader :title
 attr_reader :id
 
   def initialize(albumtitle,artistid,id = nil)
-    @albumtitle = title.downcase
+    @albumtitle = albumtitle.downcase
     @artist = artistid
     @id = id
   end
@@ -106,11 +108,11 @@ attr_reader :id
 
 end
 
-x = Song.find("Gold")
-p x
+# x = Song.find("Gold")
+# p x
 
-# x = Song.new("Gold","Chet Faker","Textures","Pop",5,6)
-# x.save
+x = Song.new("Gold","Chet Faker","Textures","Pop",5,6)
+x.save
 
 # x = Album.find("Textures")
 # p x
@@ -125,7 +127,7 @@ p x
 
 # DB.execute("DELETE FROM albums;")
 
-# p DB.execute("SELECT * FROM albums;")
+# p DB.execute("SELECT * FROM songs;")
 
 
 

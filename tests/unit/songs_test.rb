@@ -16,7 +16,16 @@ class Songstest < Minitest::Test
   def test_instance
     newsong = Song.new("White Owl","Josh Garrels","Hits","Folk",5,5)
 
-    assert_equal("White Owl", newsong.songtitle)
+    assert_equal("white owl", newsong.songtitle)
+  end
+
+  def test_save_and_find
+    newsong = Song.new("White Owl","Josh Garrels","Hits","Folk",5,5)
+    newsong.save
+
+    # foundsong = Song.find("White Owl")
+    # binding.pry
+    # assert_equal("white owl", foundsong.songtitle)
   end
 
 end

@@ -1,6 +1,6 @@
 class Song
   attr_reader :songtitle, :artist, :album, :genre, :rating, :length, :id
-  
+
   def initialize(songtitle,artist,album,genre,rating,length,id = nil)
     @songtitle = songtitle.downcase
     @artist = artist
@@ -78,7 +78,7 @@ class Album
 attr_reader :title, :id
 
   def initialize(albumtitle,artistid,id = nil)
-    @albumtitle = title.downcase
+    @albumtitle = albumtitle.downcase
     @artist = artistid
     @id = id
   end
