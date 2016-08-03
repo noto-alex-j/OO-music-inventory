@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ORMTest < Minitest::Test
+class Songstest < Minitest::Test
 
   # Consider writing a `setup` function, which automatically runs before each
   # test. This one wipes the DB before each run, which can be helpful in
@@ -13,4 +13,8 @@ class ORMTest < Minitest::Test
     DB.execute("DELETE FROM albums")
   end
 
-  
+  def test_instance
+    newsong = Song.new("White Owl","Josh Garrels","Hits","Folk",5,5)
+
+    assert_equal("White Owl", newsong.songtitle)
+  end
