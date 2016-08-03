@@ -18,3 +18,5 @@ class Songstest < Minitest::Test
 
     assert_equal("White Owl", newsong.songtitle)
   end
+
+end
