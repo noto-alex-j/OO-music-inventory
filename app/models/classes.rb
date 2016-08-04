@@ -53,7 +53,7 @@ class Song
 
   def self.all
     DB.execute(
-      "SELECT * 
+      "SELECT songs.songtitle,songs.genre,songs.rating,songs.length,albums.albumtitle,artists.name,songs.album_id,songs.id
       FROM songs 
       JOIN albums ON songs.album_id = albums.id
       JOIN artists ON albums.artist_id = artists.id

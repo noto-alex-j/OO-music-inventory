@@ -9,11 +9,19 @@ end
 MyApp.post "/addsong" do
 	newsong = Song.new(params[:songtitle],params[:artist],params[:album],params[:genre],params[:rating],params[:length])
 	newsong.save
+	@songs = Song.all
 
-	erb :"/home"
+	erb :"/songs"
 end
 
 MyApp.get "/songs" do
+	@songs = Song.all
+
+	erb :"/songs"
+end
+
+MyApp.post "/songs" do
+	Song.delete(params[:delete])
 	@songs = Song.all
 	erb :"/songs"
 end

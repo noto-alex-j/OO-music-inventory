@@ -1,11 +1,13 @@
-<%
-@songs.each do |song| %>
+<% @songs.each do |song| %>
 	Title <%= song["songtitle"] %>
 	Artist <%= song["name"] %>
 	Album <%= song["albumtitle"] %>
 	Genre <%= song["genre"] %>
 	Rating <%= song["rating"] %>
 	Length <%= song["length"] %>
+	<form action="/songs" method="post">
+		<button type="submit" value="<%= song["id"] %>" name="delete" class="delete">Delete</button>
+	</form>
 	<br>
 <% end %>
 
