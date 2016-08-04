@@ -24,9 +24,10 @@
   	<td class="table__data rating"><%= song["rating"] %></td>
   	<td class="table__data rating">
   		<form action="/songs" method="post">
-			<button type="submit" value="<%= song["id"] %>" name="delete" class="delete">Delete</button>
-		</form>
+			   <button type="submit" value="<%= song["id"] %>" name="delete" class="deleteItem__button"></button>
+		  </form>
   	</td>
    </tr>
    <% end %>
 </table>
+

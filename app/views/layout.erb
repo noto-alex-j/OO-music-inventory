@@ -8,23 +8,94 @@
     <meta name="keywords" content="">
     <meta name="author" content="">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <!-- <link rel="icon" href="images/vinyl.png"> -->
+    <link rel="icon" href="images/vinyl.png">
     <script type="text/javascript" src="global.js"></script>
 
     <title>Music Database</title>
   </head>
 
-<body>
-<a href= "/">Home</a>
-<a href= "/songs">Songs</a>
-<a href= "/addsong">Add</a>
-<br>
-<br>
+<body class="mainContainer">
 
-<%= yield %>
+  <nav class="topContainer">
 
+      <div class="editItems">
+        <div id="addSongButton" class="addItem__button">
+            <img class="addItem__icon" src="images/add.png">
+        </div>
+      
+      <div class="nav">    
+          <a class="nav__item" href= "/songs">Songs</a>
+      </div>
+
+  </nav>
+
+<!-- The `yield` below is where the contents of a view file are put. -->
+<!-- Then the combined layout + view is sent back to the client. -->
+<div class="contentContainer">
+  <%= yield %>
+</div>
+
+<form class="form" action="/addsong" method="post" id= "addSongForm">
+<div id="addClose">X</div>
+    Song:
+    <input class="form__item" type="text" name="songtitle" required><br>
+
+    Artist:
+    <input class="form__item" type="text" name="artist" required><br>
+
+    Album:
+    <input class="form__item" type="text" name="album" required=""><br>
+
+    Genre:
+
+    <select class="form__item genre" name="genre">
+        <option value="Blues">Blues</option>
+        <option value="Classical">Classical</option>
+        <option value="Country">Country</option>
+        <option value="Electronic">Electronic</option>
+        <option value="Folk">Folk</option>
+        <option value="Hip-hop/Rap">Hip-hop/Rap</option>
+        <option value="Jazz">Jazz</option>
+        <option value="Pop">Pop</option>
+        <option value="Rock">Rock</option>
+    </select><br>
+
+    Track Length
+
+    <div class="form__item second">Length:
+       <input class="form__item" type="number" name="length" required>
+    </div>
+
+    Song Rating:
+    <span class="rating" name="rating">
+        <input type="radio" class="songrating-input" value="1"
+                id="songrating-input-1-5" name="rating"/>
+        <label for="songrating-input-1-5" class="songrating-star"></label>
+       
+        <input type="radio" class="songrating-input" value="2"
+                id="songrating-input-1-4" name="rating"/>
+        <label for="songrating-input-1-4" class="songrating-star"></label>
+        
+        <input type="radio" class="songrating-input" value="3"
+                id="songrating-input-1-3" name="rating"/>
+        <label for="songrating-input-1-3" class="songrating-star"></label>
+        
+        <input type="radio" class="songrating-input" value="4"
+                id="songrating-input-1-2" name="rating"/>
+        <label for="songrating-input-1-2" class="songrating-star"></label>
+        
+        <input type="radio" class="songrating-input" value="5"
+                id="songrating-input-1-1" name="rating"/>
+        <label for="songrating-input-1-1" class="songrating-star"></label>
+    </span><br>
+    
+    
+    <input class="form__item submit" type="submit" name="submit">
+</form>
 
 </body>
 
 </html>
+
+
 
