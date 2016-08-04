@@ -40,5 +40,10 @@ MyApp.get "/artist/:artist" do
     @similar = @artist.getSimilarArtistInfo
     @artistinfo = @artist.getArtistInfo
 
-	erb :"/artist"
+	erb :"/artistlinks"
 end
+
+
+
+
+

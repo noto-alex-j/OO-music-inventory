@@ -144,36 +144,6 @@
 	border: solid 1px gray;
 }
 
-/* -------------------- Search CSS -------------------- */
-.searchItem {
-	display: flex;
-	flex: 1;
-	justify-content: flex-end;
-}
-
-.searchForm {
-	display: flex;
-	border-radius: 25px;
-	align-content: center;
-}
-
-.searchItem__box {
-	border-radius: 20px;
-	font-size: 16px;
-	padding-left: 10px;
-}
-.searchItem__box:focus {
-	outline: none;
-}
-
-.searchItem__button {
-	background-color: white;
-	width: 16px;
-}
-
-.searchItem__button:focus {
-	outline: none;
-}
 
 /* -------------------- Add/Delete Form CSS -------------------- */
 #addClose {
@@ -295,15 +265,6 @@
 	border-color: white;
 }
 
-#deleteSongForm {
-	visibility: hidden;
-}
-
-#deleteClose {
-	display: flex;
-	justify-content: flex-end;
-	cursor: pointer;
-}
 
 /* -------------------- Song List CSS -------------------- */
 
