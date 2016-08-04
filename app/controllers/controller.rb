@@ -27,8 +27,6 @@ MyApp.post "/songs" do
 	erb :"/songs"
 end
 
-
-
 MyApp.post "/search" do
 	@search = Artist.findname(params[:search])
 

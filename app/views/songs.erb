@@ -3,16 +3,30 @@
     <input class="form__item submit" type="submit" name="submit">
 </form>
 <br>
-<% @songs.each do |song| %>
-	Title <%= song["songtitle"] %>
-	Artist <%= song["name"] %>
-	Album <%= song["albumtitle"] %>
-	Genre <%= song["genre"] %>
-	Rating <%= song["rating"] %>
-	Length <%= song["length"] %>
-	<form action="/songs" method="post">
-		<button type="submit" value="<%= song["id"] %>" name="delete" class="delete">Delete</button>
-	</form>
-	<br>
-<% end %>
 
+<table class="table">
+  <tr class="table__row">
+    <th class="table__header">Song</th>
+    <th class="table__header">Artist</th> 
+    <th class="table__header">Album</th>
+    <th class="table__header">Genre</th>
+    <th class="table__header">Length</th>
+    <th class="table__header">Rating</th>
+    <th class="table__header">Album Rating</th> 
+  </tr>
+  <% @songs.each do |song| %>
+  <tr class="table__row">
+  	<td class="table__data"><%= song["songtitle"] %></td>
+  	<td class="table__data"><%= song["name"] %></td>
+  	<td class="table__data"><%= song["albumtitle"] %></td>
+  	<td class="table__data"><%= song["genre"] %></td>
+  	<td class="table__data"><%= song["length"] %></td>
+  	<td class="table__data rating"><%= song["rating"] %></td>
+  	<td class="table__data rating">
+  		<form action="/songs" method="post">
+			<button type="submit" value="<%= song["id"] %>" name="delete" class="delete">Delete</button>
+		</form>
+  	</td>
+   </tr>
+   <% end %>
+</table>
