@@ -125,7 +125,7 @@ class ArtistInfo
 		@artistnames = Array.new
 		@artisturls = Array.new
 		@artistimages = Array.new
-		@artistname = artist
+		@artist = artist
 		self.similarArtistUrls()
 		self.similarArtistNames()
 		self.similarArtistImages()
@@ -164,13 +164,13 @@ class ArtistInfo
 			{"name" => @artistnames[1], "url" => @artisturls[1], "image" => @artistimages[1]},
 			{"name" => @artistnames[2], "url" => @artisturls[2], "image" => @artistimages[2]}
 		]
-		return @similarArtistInfo
+		return similarArtistInfo
 	end
 
 	def getArtistInfo
 		if @artistinfo["error"] != 6
 			artist = {
-				"name" => @artistname,
+				"name" => @artist,
 				"url" => @artistinfo["artist"]["url"],
 				"bio" => @artistinfo["artist"]["bio"]["summary"],
 				"image" => @artistinfo["artist"]["image"][2]["#text"]
