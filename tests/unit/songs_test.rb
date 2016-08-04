@@ -13,8 +13,11 @@ class Songstest < Minitest::Test
     DB.execute("DELETE FROM artists")
     DB.execute("DELETE FROM albums")
 
-    newsong = Song.new("White Owl","Josh Garrels","Hits","Folk",5,5)
-    newsong.save
+    Song.new("White Owl","Josh Garrels","Hits","Folk",5,5).save
+    Song.new("Gold","Chet Faker","Built on Glass","Blues",5,5).save
+    Song.new("Let It Go","Gungor","I Am Mountain","Folk",5,5).save
+    Song.new("Ulysses","Josh Garrels","Love and War","Folk",5,5).save
+    
   end
 
   # Tests whether Song class creates new instance with correct format and
@@ -60,6 +63,14 @@ class Songstest < Minitest::Test
 
     deletedsong = Song.find("White Owl")
     assert_equal("Not found",deletedsong)
+  end
+
+  def test_find_by_artist
+    songs = Artist.findname("Josh Garrels")
+
+    songs.each do |song|
+      assert_equal("josh garrels", song["name"])
+    end
   end
 
 end

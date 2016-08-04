@@ -23,6 +23,14 @@ end
 MyApp.post "/songs" do
 	Song.delete(params[:delete])
 	@songs = Song.all
+
 	erb :"/songs"
 end
 
+
+
+MyApp.post "/search" do
+	@search = Artist.findname(params[:search])
+
+	erb :"/search"
+end
