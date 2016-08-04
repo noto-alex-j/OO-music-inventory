@@ -8,10 +8,10 @@ class Song
   attr_reader :songtitle, :artist, :album, :genre, :rating, :length, :id
 
   def initialize(songtitle,artist,album,genre,rating,length,id = nil)
-    @songtitle = songtitle.downcase
-    @artist = artist.downcase
-    @album = album.downcase
-    @genre = genre.downcase
+    @songtitle = songtitle.downcase.split.map do |x| x.capitalize end.join(" ")
+    @artist = artist.downcase.split.map do |x| x.capitalize end.join(" ")
+    @album = album.downcase.split.map do |x| x.capitalize end.join(" ")
+    @genre = genre.downcase.split.map do |x| x.capitalize end.join(" ")
     @rating = rating
     @length = length
     @id = id
@@ -128,13 +128,13 @@ end
 
 
 
-x = Song.all
-p x
+# x = Song.all
+# p x
 
 # x = Song.find("Goldsfdsd")
 # p x
 
-# x = Song.new("saeer","Chet fxggjdgf","esrffgdfh","sesagsh",5,6)
+x = Song.new("saeer","Chet fxggjdgf","esrffgdfh","sesagsh",5,6)
 # x.save
 
 # x = Album.find("Textures")

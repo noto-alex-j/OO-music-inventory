@@ -25,7 +25,7 @@ class Songstest < Minitest::Test
   def test_instance
     testsong = Song.new("White Owl","Josh Garrels","Hits","Folk",5,5)
 
-    assert_equal("white owl", testsong.songtitle)
+    assert_equal("White Owl", testsong.songtitle)
   end
 
   # Tests whether find method correctly finds song in database that was 
@@ -33,7 +33,7 @@ class Songstest < Minitest::Test
   def test_find_song
     foundsong = Song.find("White Owl")
 
-    assert_equal("white owl", foundsong.songtitle)
+    assert_equal("White Owl", foundsong.songtitle)
   end
 
   def test_artist_save_and_find
@@ -42,7 +42,7 @@ class Songstest < Minitest::Test
 
     foundartist = Artist.find("James Blake")
 
-    assert_equal("james blake", foundartist.name)
+    assert_equal("James Blake", foundartist.name)
   end
 
   def test_album_save_and_find
@@ -51,7 +51,7 @@ class Songstest < Minitest::Test
 
     foundalbum = Album.find("Overgrown")
 
-    assert_equal("overgrown", foundalbum.albumtitle)
+    assert_equal("Overgrown", foundalbum.albumtitle)
   end
 
   def test_song_delete
@@ -69,7 +69,7 @@ class Songstest < Minitest::Test
     songs = Artist.findname("Josh Garrels")
 
     songs.each do |song|
-      assert_equal("josh garrels", song["name"])
+      assert_equal("Josh Garrels", song["name"])
     end
   end
 

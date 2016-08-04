@@ -2,10 +2,10 @@ class Song
   attr_reader :songtitle, :artist, :album, :genre, :rating, :length, :id
 
   def initialize(songtitle,artist,album,genre,rating,length,id = nil)
-    @songtitle = songtitle.downcase
-    @artist = artist.downcase
-    @album = album.downcase
-    @genre = genre.downcase
+    @songtitle = songtitle.downcase.split.map do |x| x.capitalize end.join(" ")
+    @artist = artist.downcase.split.map do |x| x.capitalize end.join(" ")
+    @album = album.downcase.split.map do |x| x.capitalize end.join(" ")
+    @genre = genre.downcase.split.map do |x| x.capitalize end.join(" ")
     @rating = rating
     @length = length
     @id = id
@@ -34,7 +34,7 @@ class Song
   end
 
   def self.find(title)
-    title = title.downcase
+    title = title.downcase.split.map do |x| x.capitalize end.join(" ")
     record = DB.execute(
       "SELECT * 
       FROM songs 
@@ -71,7 +71,7 @@ class Artist
   attr_reader :name
 
   def initialize(name, id = nil)
-    @name = name.downcase
+    @name = name.downcase.split.map do |x| x.capitalize end.join(" ")
     @id = id
   end
 
@@ -80,7 +80,7 @@ class Artist
   end
 
   def self.find(name)
-    name = name.downcase
+    name = name.downcase.split.map do |x| x.capitalize end.join(" ")
     record = DB.execute("SELECT * FROM artists WHERE name = '#{name}';")
     record = record[0]
     if record != nil
@@ -91,7 +91,7 @@ class Artist
   end
 
   def self.findname(name)
-    name = name.downcase
+    name = name.downcase.split.map do |x| x.capitalize end.join(" ")
     DB.execute(
       "SELECT songs.songtitle,songs.genre,songs.rating,songs.length,albums.albumtitle,artists.name,songs.album_id,songs.id
       FROM songs 
@@ -109,7 +109,7 @@ attr_reader :albumtitle
 attr_reader :id
 
   def initialize(albumtitle,artistid,id = nil)
-    @albumtitle = albumtitle.downcase
+    @albumtitle = albumtitle.downcase.split.map do |x| x.capitalize end.join(" ")
     @artist = artistid
     @id = id
   end
@@ -119,7 +119,7 @@ attr_reader :id
   end
 
   def self.find(title)
-    title = title.downcase
+    title = title.downcase.split.map do |x| x.capitalize end.join(" ")
     record = DB.execute("SELECT * FROM albums WHERE albumtitle = '#{title}';")
     record = record[0]
     if record != nil
