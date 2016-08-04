@@ -32,3 +32,13 @@ MyApp.post "/search" do
 
 	erb :"/search"
 end
+
+MyApp.get "/artist/:artist" do
+	@topalbums = TopAlbum.new(params[:artist]).getTopAlbumInfo
+	@toptracks = TopTrack.new(params[:artist]).getTopTrackInfo
+	@artist = ArtistInfo.new(params[:artist])
+    @similar = @artist.getSimilarArtistInfo
+    @artistinfo = @artist.getArtistInfo
+
+	erb :"/artist"
+end

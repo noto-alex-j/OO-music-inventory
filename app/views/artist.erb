@@ -1,0 +1,62 @@
+
+
+<h1><a class="artistTitle" href= "<%= @artistinfo["url"] %>"><%= @artistinfo["name"] %></a></h1>
+  
+<div class= "artistBio" id="artistBio__full"><%= @artistinfo["bio"] %></div>
+
+<div class="artistTab">
+  <a href= "#"><div class= "tab" id="artistTab__albums">Top Albums</div></a>
+  <a href= "#"><div class= "tab" id="artistTab__tracks">Top Tracks</div></a>
+  <a href= "#"><div class= "tab" id="artistTab__artists">Similar Artists</div></a>
+</div>
+
+
+<!------------------- Top Albums Tab ------------------>
+  
+      <div id= "topAlbums" class= "tabContent">
+  
+      <% @topalbums.each do |album| %>
+  
+        <div class= "tabContent__view">
+          <img class="tabContent__image" src= "<%= album["image"] %>">
+          <br>
+          <a class ="tabContent__link" href= "<%= album["url"] %>"><%= album["name"] %></a>
+        </div>
+  
+      <% end %>
+  
+    </div>
+  
+
+<!------------------- Similar Artists Tab ------------------>
+
+  <div id= "similarArtists" class= "tabContent">
+    
+      <% @similar.each do |artist| %>
+  
+        <div class= "tabContent__view">
+          <img class="tabContent__image" src= "<%= artist["image"] %>">
+          <br>
+          <a class ="tabContent__link" href= "<%= artist["url"] %>"><%= artist["name"] %></a>
+        </div>
+  
+      <% end %>
+  
+    </div>
+  
+<!------------------- Top Tracks Tab ------------------>
+  
+    <div id= "topTracks" class= "tabContent">
+  
+      <% @toptracks.each do |track| %>
+  
+        <div class= "tabContent__view">
+          <img class="tabContent__image" src= "<%= track["image"] %>">
+          <br>
+          <a class ="tabContent__link" href= "<%= track["url"] %>"><%=  track["name"] %></a>
+        </div>
+  
+      <% end %>
+  
+    </div>
+  

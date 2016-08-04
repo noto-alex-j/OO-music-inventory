@@ -17,7 +17,7 @@
   <% @search.each do |song| %>
   <tr class="table__row">
   	<td class="table__data"><%= song["songtitle"] %></td>
-  	<td class="table__data"><%= song["name"] %></td>
+  	<td class="table__data"><a href="/artist/<%= song["name"] %>"><%= song["name"] %></a></td>
   	<td class="table__data"><%= song["albumtitle"] %></td>
   	<td class="table__data"><%= song["genre"] %></td>
   	<td class="table__data"><%= song["length"] %></td>
