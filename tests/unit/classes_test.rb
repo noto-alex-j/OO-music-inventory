@@ -28,8 +28,6 @@ class Songstest < Minitest::Test
     assert_equal("White Owl", testsong.songtitle)
   end
 
-  # Tests whether find method correctly finds song in database that was 
-  # added in test setup
   def test_find_song
     foundsong = Song.find("White Owl")
 
