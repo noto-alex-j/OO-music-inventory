@@ -1,6 +1,8 @@
 class Song
   attr_reader :songtitle, :artist, :album, :genre, :rating, :length, :id
 
+  # Using downcase/split/capitalize chain to make user input more consistent
+  #
   def initialize(songtitle,artist,album,genre,rating,length,id = nil)
     @songtitle = songtitle.downcase.split.map do |x| x.capitalize end.join(" ")
     @artist = artist.downcase.split.map do |x| x.capitalize end.join(" ")
@@ -11,24 +13,22 @@ class Song
     @id = id
   end
 
+  # First checks to see if artist and album exist in database and, if not, adds them
+  #
   def save
-    # artist = Artist.find_or_create_by_name(@artist)
-
     if Artist.find(@artist) == nil
       newartist = Artist.new(@artist)
       newartist.save
     end
 
-    artistinfo = Artist.find(@artist)
-    artistid = artistinfo.id
+    artistid = Artist.find(@artist).id
 
     if Album.find(@album) == nil
       newalbum = Album.new(@album,artistid)
       newalbum.save
     end
 
-    albuminfo = Album.find(@album)
-    albumid = albuminfo.id
+    albumid = Album.find(@album).id
 
     DB.execute("INSERT INTO songs (songtitle,album_id,genre,rating,length) VALUES ('#{@songtitle}',#{albumid},'#{@genre}',#{@rating},#{@length});")
   end
@@ -43,6 +43,7 @@ class Song
       WHERE songs.songtitle = '#{title}';"
       )
     record = record[0]
+    # record returned as hash within array, record[0] removes it from array
 
     if record != nil
       Song.new(record["songtitle"],record["name"],record["albumtitle"],record["genre"],record["rating"],record["length"],record["id"])
@@ -67,8 +68,7 @@ class Song
 end
 
 class Artist
-  attr_reader :id
-  attr_reader :name
+  attr_reader :name, :id
 
   def initialize(name, id = nil)
     @name = name.downcase.split.map do |x| x.capitalize end.join(" ")
@@ -105,8 +105,7 @@ end
 
 
 class Album
-attr_reader :albumtitle
-attr_reader :id
+attr_reader :albumtitle, :id
 
   def initialize(albumtitle,artistid,id = nil)
     @albumtitle = albumtitle.downcase.split.map do |x| x.capitalize end.join(" ")

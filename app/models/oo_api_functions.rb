@@ -1,8 +1,11 @@
-# Functions for Top Albums section of Artists page
+# Functions for requesting the API information for artistlinks.erb
 #
-# Functions request 'top albums' array from Last.fm API 
+# Functions obtain URLs, titles, and images from array and return them in separate arrays. 
 #
-# Functions obtain URLs, titles, and images from 'top albums' array and return them in separate arrays. 
+# First 3 methods are called by initialize to assign url/name/image arrays
+# Only get*Info methods are used outside of class
+
+# ------------------- Top Albums ------------------------
 
 class TopAlbum
 
@@ -55,11 +58,7 @@ class TopAlbum
 
 end
 
-# Functions for Top Tracks section of Artists page
-#
-# Functions request 'top tracks' array from Last.fm API 
-#
-# Functions obtain URLs, titles, and images from 'top tracks' array and return them in separate arrays. 
+# ------------------- Top Tracks ------------------------
 
 class TopTrack
 
@@ -111,13 +110,12 @@ class TopTrack
 
 end
 
+# ------------------- Artist Info & Similar Artists ------------------------
 
-# Functions for Artist Info section of Artists page
+# Similar artists info is returned along with artist info from API
+# Decided to use single request instead of making separate requests to 
+# API for both artist info and similar artist info
 #
-# Functions request 'artistinfo' array from Last.fm API 
-#
-# Functions obtain URLs, titles, and images from 'similar artists' array and return them in separate arrays. 
-
 class ArtistInfo
 
 	def initialize(artist)
